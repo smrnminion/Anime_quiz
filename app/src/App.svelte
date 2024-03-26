@@ -7,12 +7,11 @@
   let assistant;
   let state = {
     count: 0,
-    place: {name: 'Токийский гуль', iso: '1'},
+    curr_anim: {name: 'Токийский гуль', iso: '1'},
     variants: [
       {name: 'Аниме 1', used: false},
       {name: 'Аниме 2', used: false},
-      {name: 'Аниме 3', used: false},
-      {name: 'Аниме 4', used: false}
+      {name: 'Аниме 3', used: false}
     ],
     lifes: 3,
     endGame: false
@@ -64,7 +63,7 @@
     if (state.endGame){
       return;
     }
-    if (state.variants[i].name !== state.place.name) {
+    if (state.variants[i].name !== state.curr_anim.name) {
       state.variants[i].used = true;
     }
     assistant.sendData({
@@ -81,10 +80,10 @@
     <h2>Правильные ответы: {state.count}</h2>
     <h2>НР: {state.lifes}</h2>
       <!-- svelte-ignore a11y-missing-attribute -->
-      <img src="/photos/{state.place.iso}.webp" />
+      <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
         {/each}
       </div>
   </div>
@@ -95,6 +94,7 @@
   main {
     width: 100%;
     height: 100%;
+    font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
     background-color: var(--plasma-colors-background);
@@ -126,7 +126,7 @@
     border: 1px solid var(--plasma-colors-buttonWarning)
   }
   .buttons {
-    display: flex;
+    display: contents;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -135,11 +135,11 @@
   }
   button {
     margin: 2%;
-    padding: calc(7px + (15 - 7) * ((100vw - 200px) / (1440 - 200)));
+    padding: calc(17px + (15 - 7) * ((100vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
-    font-weight: 700;
-    font-size: calc(12px + (18 - 12) * ((100vw - 200px) / (1440 - 200)));
+    font-weight: 200;
+    font-size: calc(22px + (18 - 12) * ((100vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
@@ -151,6 +151,7 @@
   h2 {
     text-align: center;
     margin: 0;
+    font-weight: 200;
     font-size: calc(20px + (26 - 20) * ((100vw - 200px) / (1440 - 200)));
   }
 </style>
