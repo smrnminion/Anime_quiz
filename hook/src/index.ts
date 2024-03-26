@@ -41,7 +41,7 @@ function* script(r: SberRequest) {
     temp_variants.push(curr_anim.name);
     
     let i = 0
-    while (i < 3){
+    while (i < 2){
       let temp = choice(anime);
       if (temp_variants.includes(temp.name)){
         continue
@@ -58,8 +58,6 @@ function* script(r: SberRequest) {
   }
 
   function newGame(){
-    rsp.msg = 'К сожалению ты лох';
-    rsp.kbrd = ['лох'];
     unusedanime = [...anime];
     state.count = 0;
     state.curr_anim = {name: '', iso: ''};
