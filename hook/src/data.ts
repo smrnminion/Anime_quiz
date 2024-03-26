@@ -115,5 +115,5 @@ export const data = [
 		"name": "Глейпнир",
 		"iso": "30"
 	}	
-]
+
 ];
