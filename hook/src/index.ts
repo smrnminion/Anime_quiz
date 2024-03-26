@@ -2,7 +2,7 @@ import { Dialute, SberRequest } from 'dialute';
 import { data } from './data';
 
 
-const heroes = data;
+const anime = data;
 
 
 function choice(choices: any, drop = false) {
@@ -24,25 +24,25 @@ function shuffle(array: any[]) {
 function* script(r: SberRequest) {
   const rsp = r.buildRsp();
   
-  let unusedheroes = [...heroes];
+  let unusedanime = [...anime];
   const state = {
     count: 0,
-    place: {name: '', iso: ''},
+    curr_anim: {name: '', iso: ''},
     variants: [] as any[],
     lifes: 3,
     endGame: false
   }
 
   function updateState() {
-    let place = choice(unusedheroes, true);
+    let curr_anim = choice(unusedanime, true);
     let variants = [] as any[];
     let temp_variants = [] as any[]
-    variants.push({name: place.name, used: false});
-    temp_variants.push(place.name);
+    variants.push({name: curr_anim.name, used: false});
+    temp_variants.push(curr_anim.name);
     
     let i = 0
     while (i < 3){
-      let temp = choice(heroes);
+      let temp = choice(anime);
       if (temp_variants.includes(temp.name)){
         continue
       }
@@ -52,15 +52,17 @@ function* script(r: SberRequest) {
     } 
 
     shuffle(variants);
-    state.place = place;
+    state.curr_anim = curr_anim;
     state.variants = variants;
     rsp.data = state;
   }
 
   function newGame(){
-    unusedheroes = [...heroes];
+    rsp.msg = 'К сожалению ты лох';
+    rsp.kbrd = ['лох'];
+    unusedanime = [...anime];
     state.count = 0;
-    state.place = {name: '', iso: ''};
+    state.curr_anim = {name: '', iso: ''};
     state.variants = [] as any[];
     state.lifes = 3;
   }
@@ -73,9 +75,9 @@ function* script(r: SberRequest) {
     rsp.end = true;
   }
 
-  function useButton(place: any) {
+  function useButton(curr_anim: any) {
     for (const [i, v] of state.variants.entries()) {
-      if (place.toLowerCase() === v.name.toLowerCase()) {
+      if (curr_anim.toLowerCase() === v.name.toLowerCase()) {
         state.variants[i].used = true;
       }
     }
@@ -117,10 +119,10 @@ function* script(r: SberRequest) {
 
   yield rsp;
 
-  while (unusedheroes.length >= 1){
+  while (unusedanime.length >= 1){
     if (r.type === 'SERVER_ACTION'){
       if (r.act?.action_id == 'click'){
-        if (r.act.data == state.place.name){
+        if (r.act.data == state.curr_anim.name){
           afterCorrect();
         }
         else{ 
@@ -130,7 +132,7 @@ function* script(r: SberRequest) {
       yield rsp;
       continue;
     }
-    if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.place.name.toString().replace(/-/g, ' ').toLowerCase()) {
+    if (r.msg.toString().recurr_anim(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().recurr_anim(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
