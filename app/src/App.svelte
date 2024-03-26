@@ -7,18 +7,18 @@
   let assistant;
   let state = {
     count: 0,
-    place: {name: 'Shadow fiend', iso: 'sfff'},
+    place: {name: 'Токийский гуль', iso: '1'},
     variants: [
-      {name: 'Герой 1', used: false},
-      {name: 'Герой 2', used: false},
-      {name: 'Герой 3', used: false},
-      {name: 'Герой 4', used: false}
+      {name: 'Аниме 1', used: false},
+      {name: 'Аниме 2', used: false},
+      {name: 'Аниме 3', used: false},
+      {name: 'Аниме 4', used: false}
     ],
     lifes: 3,
     endGame: false
   };
 
-  let initPhrase = 'запусти викторину по доте';
+  let initPhrase = 'запусти викторину по аниме';
 
   let character = 'eva';
   $: setTheme(character);
@@ -81,7 +81,7 @@
     <h2>Правильные ответы: {state.count}</h2>
     <h2>НР: {state.lifes}</h2>
       <!-- svelte-ignore a11y-missing-attribute -->
-      <img src="/photos/{state.place.iso}.png" />
+      <img src="/photos/{state.place.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button>
