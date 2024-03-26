@@ -132,7 +132,7 @@ function* script(r: SberRequest) {
       yield rsp;
       continue;
     }
-    if (r.msg.toString().recurr_anim(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().recurr_anim(/-/g, ' ').toLowerCase()) {
+    if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
