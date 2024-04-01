@@ -58,6 +58,7 @@ function* script(r: SberRequest) {
   }
 
   function newGame(){
+    state.endGame = false;
     unusedanime = [...anime];
     state.count = 0;
     state.curr_anim = {name: '', iso: ''};
@@ -113,7 +114,7 @@ function* script(r: SberRequest) {
   rsp.msgJ = 'Привет! Ты в в викторине по Аниме. ' +
   'Ты должен угадать аниме по кадру. Если возникнут вопросы, скажи Помощь. ' +
   'Вопросы можно пропускать, сказав Пропуск, но ты потеряешь жизнь.';
-  rsp.kbrd = ['Помощь', 'Далее'];
+  rsp.kbrd = ['Помощь', 'Пропуск'];
 
   yield rsp;
 
