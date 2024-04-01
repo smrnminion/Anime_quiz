@@ -42,7 +42,7 @@ function* script(r: SberRequest) {
     
     let i = 0
     while (i < 2){
-      let temp = choice(anime);end
+      let temp = choice(anime);
       if (temp_variants.includes(temp.name)){
         continue
       }
