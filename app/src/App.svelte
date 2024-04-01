@@ -83,7 +83,7 @@
       <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
+          <button  id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
         {/each}
       </div>
   </div>
@@ -144,7 +144,7 @@
     border-radius: 9px;
     user-select: none;
   }
-  button:hover, button:focus {
+  button:hover, button:focus, button:active, button:target, button:visited {
     background: #4cc0ff;
   }
   h2 {
