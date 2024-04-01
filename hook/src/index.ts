@@ -42,7 +42,7 @@ function* script(r: SberRequest) {
     
     let i = 0
     while (i < 2){
-      let temp = choice(anime);
+      let temp = choice(anime);end
       if (temp_variants.includes(temp.name)){
         continue
       }
@@ -58,6 +58,7 @@ function* script(r: SberRequest) {
   }
 
   function newGame(){
+    rsp.end = false
     state.endGame = false;
     unusedanime = [...anime];
     state.count = 0;
