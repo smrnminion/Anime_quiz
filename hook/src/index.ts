@@ -58,7 +58,7 @@ function* script(r: SberRequest) {
   }
 
   function newGame(){
-    rsp.end = false
+    //rsp.end = false
     state.endGame = false;
     unusedanime = [...anime];
     state.count = 0;
@@ -72,7 +72,7 @@ function* script(r: SberRequest) {
     rsp.msgJ = 'Эх, ты проиграл. Ты можешь начать заново, сказав «Заново»';
     rsp.kbrd = ['Заново']
     state.endGame = true;
-    rsp.end = true;
+    //rsp.end = true;
   }
 
   function useButton(curr_anim: any) {
@@ -138,7 +138,7 @@ function* script(r: SberRequest) {
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго!'
       rsp.msgJ = 'Еще увидимся. Пока!'
-      rsp.end = true;
+      //rsp.end = true;
       rsp.data = {'type': 'close_app'}
     }
 
@@ -184,7 +184,7 @@ function* script(r: SberRequest) {
   state.count++;
   state.endGame = true;
   rsp.kbrd = ['Заново'];
-  rsp.end = true;
+  //rsp.end = true;
   
   yield rsp;
 }
