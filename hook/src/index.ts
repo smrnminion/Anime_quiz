@@ -160,13 +160,19 @@ function* script(r: SberRequest) {
     }
 
     else if (r.nlu.lemmaIntersection(['следующий', 'пропуск']) || ['пропуск', 'следующий'].includes(r.msg.toLowerCase())) {
-      state.lifes -= 1;
-      updateState();
-      if (state.lifes <= 0){
-        loseGame();
-      }
+      if(state.endGame){
+        rsp.msg = 'Ты можешь начать заново, сказав «Заново»'
+        rsp.msgJ = 'Вы можете начать заново, сказав «Заново»'
+      } 
       else{ 
-        rsp.msg = 'Обновляю'
+        state.lifes -= 1;
+        updateState();
+        if (state.lifes <= 0){
+          loseGame();
+        }
+        else{ 
+          rsp.msg = 'Обновляю'
+        }
       }
     }
     else if (r.nlu.lemmaIntersection(['заново', 'начать заново', 'новая игра'])){
