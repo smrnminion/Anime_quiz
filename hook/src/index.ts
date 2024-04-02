@@ -128,7 +128,13 @@ function* script(r: SberRequest) {
           afterCorrect();
         }
         else{ 
-          afterWrong();
+          for (let i = 0; i < state.variants.length; i++){ 
+            if(state.variants[i].name === r.act.data){
+              if(!(state.variants[i].used)){
+                afterWrong();
+              }
+            }
+          }
         }
       }
       yield rsp;
@@ -180,8 +186,10 @@ function* script(r: SberRequest) {
       let temp = true;
       for (let i = 0; i < state.variants.length; i++){ 
         if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
-          afterWrong();
-          temp = false;
+          if(!(state.variants[i].used)){
+            afterWrong();
+            temp = false;
+          }
         }
       }
       if (temp){
