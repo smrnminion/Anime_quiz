@@ -76,6 +76,8 @@ function* script(r: SberRequest) {
   }
 
   function useButton(curr_anim: any) {
+    rsp.msg = ""
+    rsp.msgJ = ""
     for (const [i, v] of state.variants.entries()) {
       if (curr_anim.toLowerCase() === v.name.toLowerCase()) {
         state.variants[i].used = true;
@@ -135,9 +137,6 @@ function* script(r: SberRequest) {
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
-    else if (state.variants.includes(r.msg.toString())) {
-      afterWrong();
-    }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго!'
       rsp.msgJ = 'Еще увидимся. Пока!'
@@ -178,8 +177,18 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
-      rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
-      rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
+      let temp = true;
+      for (let i = 0; i < state.variants.length; i++){
+        if(state.variants[i].replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
+          afterWrong();
+          temp = false;
+        }
+      }
+      if (temp){
+        rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
+        rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
+      }
+      
     }
     yield rsp;
   }
