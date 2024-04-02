@@ -187,7 +187,6 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
-      rsp.data = state;
       if(state.endGame){
         rsp.msg = 'Ты можешь начать заново, сказав «Заново» '
         rsp.msgJ = 'Вы можете начать заново, сказав «Заново» '
