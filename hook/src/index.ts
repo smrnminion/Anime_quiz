@@ -86,8 +86,8 @@ function* script(r: SberRequest) {
   function afterCorrect() {
     updateState();
     state.count++;
-    rsp.msg = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Угадали!', 'Браво!', 'Вы молодец!']);
-    rsp.msgJ = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Верно!', 'Браво!', 'Молодец!']);
+    rsp.msg = choice(['Правильно ', 'Здорово ', 'Потрясающе ', 'Угадали ', 'Браво ', 'Вы молодец ']);
+    rsp.msgJ = choice(['Правильно ', 'Здорово ', 'Потрясающе ', 'Верно ', 'Браво ', 'Молодец ']);
   }
 
   function afterWrong(useButtons = true){
@@ -100,8 +100,8 @@ function* script(r: SberRequest) {
         useButton(r.msg);
       }
     }
-    rsp.msg = choice(['Не угадали!', 'Неверно!', 'Неправильно!']);
-    rsp.msgJ = choice(['Не угадал!', 'Неверно!', 'Неправильно!']);
+    rsp.msg = choice(['Не угадали ', 'Неверно ', 'Неправильно ']);
+    rsp.msgJ = choice(['Не угадал ', 'Неверно ', 'Неправильно ']);
     state.lifes -= 1;
     if (state.lifes <= 0){
       loseGame();
@@ -134,6 +134,9 @@ function* script(r: SberRequest) {
     }
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
+    }
+    else if (state.variants.includes(r.msg.toString())) {
+      afterWrong();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго!'
@@ -175,7 +178,8 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
-      afterWrong();
+      rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
+      rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
     }
     yield rsp;
   }
