@@ -143,11 +143,11 @@
   }
   button {
     margin: 2%;
-    padding: calc(17px + (15 - 7) * ((300vw - 200px) / (1440 - 200)));
+    padding: calc(17px + (15 - 7) * ((200vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
-    font-size: calc(22px + (18 - 12) * ((300vw - 200px) / (1440 - 200)));
+    font-size: calc(22px + (18 - 12) * ((200vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
@@ -160,6 +160,6 @@
     text-align: center;
     margin: 0;
     font-weight: 200;
-    font-size: calc(20px + (26 - 20) * ((300vw - 200px) / (1440 - 200)));
+    font-size: calc(20px + (26 - 20) * ((200vw - 200px) / (1440 - 200)));
   }
 </style>
