@@ -189,20 +189,25 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
-      let temp = true;
-      for (let i = 0; i < state.variants.length; i++){ 
-        if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
-          if(!(state.variants[i].used)){
-            afterWrong();
-            temp = false;
+      if(state.endGame){
+        rsp.msg = 'Ты можешь начать заново, сказав «Заново»'
+        rsp.msgJ = 'Вы можете начать заново, сказав «Заново»'
+      } 
+      else{
+        let temp = true;
+        for (let i = 0; i < state.variants.length; i++){ 
+          if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
+            if(!(state.variants[i].used)){
+              afterWrong();
+              temp = false;
+            }
           }
         }
+        if (temp){
+          rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
+          rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
+        }
       }
-      if (temp){
-        rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
-        rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
-      }
-      
     }
     yield rsp;
   }
