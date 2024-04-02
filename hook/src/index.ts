@@ -140,7 +140,7 @@ function* script(r: SberRequest) {
       yield rsp;
       continue;
     }
-    if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
+    if (r.msgv.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
@@ -161,7 +161,7 @@ function* script(r: SberRequest) {
       if(state.endGame){
         rsp.msg = 'Ты можешь начать заново, сказав Заново '
         rsp.msgJ = 'Вы можете начать заново, сказав Заново '
-      } 
+      }
       else{ 
         state.lifes -= 1;
         updateState();
@@ -187,6 +187,7 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
+      rsp.data = state;
       if(state.endGame){
         rsp.msg = 'Ты можешь начать заново, сказав «Заново» '
         rsp.msgJ = 'Вы можете начать заново, сказав «Заново» '
