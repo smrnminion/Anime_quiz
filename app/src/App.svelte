@@ -124,7 +124,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 1%;
+    margin-bottom: 4%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
