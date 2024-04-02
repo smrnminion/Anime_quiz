@@ -111,7 +111,7 @@
     color: var(--plasma-colors-text);
   }
   img {
-    width: 90%;
+    width: 75%;
     margin: 20px;
     border-radius: 9px;
   }
@@ -124,6 +124,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 2%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
