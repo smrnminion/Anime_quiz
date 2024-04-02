@@ -186,8 +186,6 @@ function* script(r: SberRequest) {
       rsp.msg = 'Добро пожаловать обратно в игру'
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
-    else if (r.nlu.lemmaIntersection(['запусти', 'начни', 'старт'])){
-    }
     else{
       if(state.endGame){
         rsp.msg = 'Ты можешь начать заново, сказав «Заново» '
@@ -202,10 +200,6 @@ function* script(r: SberRequest) {
               temp = false;
             }
           }
-        }
-        if (temp){
-          rsp.msg = 'Нет такого варианта ответа, попробуйте повторить '
-          rsp.msgJ = 'Нет такого варианта ответа, попробуй повторить '
         }
       }
     }
