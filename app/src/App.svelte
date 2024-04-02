@@ -112,7 +112,7 @@
   }
   img {
     width: 80%;
-    margin: 10px;
+    margin: 5px;
     border-radius: 9px;
   }
   .card {
@@ -124,7 +124,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 2%;
+    margin-top: 1%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
