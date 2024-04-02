@@ -111,8 +111,8 @@
     color: var(--plasma-colors-text);
   }
   img {
-    width: 75%;
-    margin: 20px;
+    width: 80%;
+    margin: 5px;
     border-radius: 9px;
   }
   .card {
@@ -124,7 +124,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 2%;
+    margin-bottom: 7%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
@@ -147,7 +147,7 @@
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
-    font-size: calc(22px + (18 - 12) * ((200vw - 200px) / (1440 - 200)));
+    font-size: calc(22px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
@@ -160,6 +160,6 @@
     text-align: center;
     margin: 0;
     font-weight: 200;
-    font-size: calc(20px + (26 - 20) * ((200vw - 200px) / (1440 - 200)));
+    font-size: calc(20px + (26 - 20) * ((150vw - 200px) / (1440 - 200)));
   }
 </style>
