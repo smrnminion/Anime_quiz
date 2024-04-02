@@ -59,7 +59,16 @@
     });
   });
 
+  function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
+
   function handleClick(i) {
+    sleep(100);
     if (state.endGame){
       return;
     }
@@ -144,7 +153,7 @@
     border-radius: 9px;
     user-select: none;
   }
-  button:focus, button:active, button:target, button:visited {
+  button:focus, button:target, button:active, button:visited {
     background: #4cc0ff;
   }
   h2 {

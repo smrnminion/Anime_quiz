@@ -76,6 +76,8 @@ function* script(r: SberRequest) {
   }
 
   function useButton(curr_anim: any) {
+    rsp.msg = ""
+    rsp.msgJ = ""
     for (const [i, v] of state.variants.entries()) {
       if (curr_anim.toLowerCase() === v.name.toLowerCase()) {
         state.variants[i].used = true;
@@ -86,8 +88,8 @@ function* script(r: SberRequest) {
   function afterCorrect() {
     updateState();
     state.count++;
-    rsp.msg = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Угадали!', 'Браво!', 'Вы молодец!']);
-    rsp.msgJ = choice(['Правильно!', 'Здорово!', 'Потрясающе!', 'Верно!', 'Браво!', 'Молодец!']);
+    rsp.msg = choice(['Правильно ', 'Здорово ', 'Потрясающе ', 'Угадали ', 'Браво ', 'Вы молодец ']);
+    rsp.msgJ = choice(['Правильно ', 'Здорово ', 'Потрясающе ', 'Верно ', 'Браво ', 'Молодец ']);
   }
 
   function afterWrong(useButtons = true){
@@ -100,8 +102,8 @@ function* script(r: SberRequest) {
         useButton(r.msg);
       }
     }
-    rsp.msg = choice(['Не угадали!', 'Неверно!', 'Неправильно!']);
-    rsp.msgJ = choice(['Не угадал!', 'Неверно!', 'Неправильно!']);
+    rsp.msg = choice(['Не угадали ', 'Неверно ', 'Неправильно ']);
+    rsp.msgJ = choice(['Не угадал ', 'Неверно ', 'Неправильно ']);
     state.lifes -= 1;
     if (state.lifes <= 0){
       loseGame();
@@ -126,7 +128,13 @@ function* script(r: SberRequest) {
           afterCorrect();
         }
         else{ 
-          afterWrong();
+          for (let i = 0; i < state.variants.length; i++){ 
+            if(state.variants[i].name === r.act.data){
+              if(!(state.variants[i].used)){
+                afterWrong();
+              }
+            }
+          }
         }
       }
       yield rsp;
@@ -136,29 +144,33 @@ function* script(r: SberRequest) {
       afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
-      rsp.msg = 'Всего вам доброго!'
-      rsp.msgJ = 'Еще увидимся. Пока!'
+      rsp.msg = 'Всего вам доброго! '
+      rsp.msgJ = 'Еще увидимся. Пока! '
       //rsp.end = true;
       rsp.data = {'type': 'close_app'}
     }
 
     else if (r.nlu.lemmaIntersection(['помощь', 'помочь'])) {
-      rsp.msg = 'Добро пожаловать в викторину по Аниме. ' +
-      'Вы должны угадать аниме по кадру. Если возникнут вопросы, скажите Помощь. ' +
-      'Вопросы можно пропускать, сказав Пропуск, но Вы потеряете жизнь.';
-      rsp.msgJ = 'Привет! Ты в в викторине по Аниме. ' +
-      'Ты должен угадать аниме по кадру. Если возникнут вопросы, скажи Помощь. ' +
+      rsp.msg = 'Вы должны угадать аниме по кадру. ' +
+      'Вопросы можно пропускать, сказав Пропуск, но Вы потеряете жизнь. ';
+      rsp.msgJ = 'Ты должен угадать аниме по кадру. ' +
       'Вопросы можно пропускать, сказав Пропуск, но ты потеряешь жизнь.';
     }
 
     else if (r.nlu.lemmaIntersection(['следующий', 'пропуск']) || ['пропуск', 'следующий'].includes(r.msg.toLowerCase())) {
-      state.lifes -= 1;
-      updateState();
-      if (state.lifes <= 0){
-        loseGame();
-      }
+      if(state.endGame){
+        rsp.msg = 'Ты можешь начать заново, сказав Заново '
+        rsp.msgJ = 'Вы можете начать заново, сказав Заново '
+      } 
       else{ 
-        rsp.msg = 'Обновляю'
+        state.lifes -= 1;
+        updateState();
+        if (state.lifes <= 0){
+          loseGame();
+        }
+        else{ 
+          rsp.msg = 'Обновляю'
+        }
       }
     }
     else if (r.nlu.lemmaIntersection(['заново', 'начать заново', 'новая игра'])){
@@ -175,12 +187,26 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
     else{
-      afterWrong();
+      if(state.endGame){
+        rsp.msg = 'Ты можешь начать заново, сказав «Заново» '
+        rsp.msgJ = 'Вы можете начать заново, сказав «Заново» '
+      } 
+      else{
+        let temp = true;
+        for (let i = 0; i < state.variants.length; i++){ 
+          if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
+            if(!(state.variants[i].used)){
+              afterWrong();
+              temp = false;
+            }
+          }
+        }
+      }
     }
     yield rsp;
   }
-  rsp.msg = 'Поздравляю! Вы знаете много аниме!'
-  rsp.msgJ = 'Поздравляю! Ты знаешь много аниме!'
+  rsp.msg = 'Поздравляю! Вы знаете много аниме! '
+  rsp.msgJ = 'Поздравляю! Ты знаешь много аниме! '
   state.count++;
   state.endGame = true;
   rsp.kbrd = ['Заново'];
