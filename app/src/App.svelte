@@ -153,7 +153,7 @@
     border-radius: 9px;
     user-select: none;
   }
-  button:target {
+  button:focus, button:target, button:active, button:visited {
     background: #4cc0ff;
   }
   h2 {
