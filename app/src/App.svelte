@@ -124,7 +124,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: -5%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
@@ -142,8 +141,8 @@
     min-width: 160px;
   }
   button {
-    margin: 2%;
-    padding: calc(17px + (15 - 7) * ((200vw - 200px) / (1440 - 200)));
+    margin: 1%;
+    padding: calc(17px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
