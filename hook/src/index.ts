@@ -201,6 +201,10 @@ function* script(r: SberRequest) {
             }
           }
         }
+        if(temp){
+          rsp.msg = ''
+          rsp.msgJ = ''
+        }
       }
     }
     yield rsp;
