@@ -178,8 +178,8 @@ function* script(r: SberRequest) {
     }
     else{
       let temp = true;
-      for (let i = 0; i < state.variants.length; i++){
-        if(state.variants[i].replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
+      for (let i = 0; i < state.variants.length; i++){ 
+        if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
           afterWrong();
           temp = false;
         }
