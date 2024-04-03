@@ -68,7 +68,7 @@
   }
 
   function handleClick(i) {
-    sleep(100);
+    sleep(500);
     if (state.endGame){
       return;
     }
