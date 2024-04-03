@@ -60,11 +60,15 @@
   });
 
   function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
+    document.getElementById("demo").innerHTML = Date();
+    document.getElementsByClassName("button")[0].setAttribute('disabled', 'true');
+    document.getElementsByClassName("button")[1].setAttribute('disabled', 'true');
+    document.getElementsByClassName("button")[2].setAttribute('disabled', 'true');
+    setTimeout(function(){
+      document.getElementsByClassName("button")[0].removeAttribute('disabled');
+      document.getElementsByClassName("button")[1].removeAttribute('disabled');
+      document.getElementsByClassName("button")[2].removeAttribute('disabled');
+    }, milliseconds)
   }
 
   function handleClick(i) {
