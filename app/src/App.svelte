@@ -72,7 +72,6 @@
   }
 
   function handleClick(i) {
-    sleep(500);
     if (state.endGame){
       return;
     }
@@ -85,6 +84,7 @@
         data: state.variants[i].name
       }
     })
+    sleep(500);
   }
 </script>
 
