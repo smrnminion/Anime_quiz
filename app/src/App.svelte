@@ -102,7 +102,7 @@
 <style>
   main {
     width: 100%;
-    height: 100%;
+    height: 120%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
@@ -125,7 +125,7 @@
     align-items: center;
     flex-direction: column;
     margin-bottom: 7%;
-    height: 200%;
+    height: 120%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
