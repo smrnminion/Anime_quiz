@@ -107,7 +107,7 @@
     display: grid;
     place-items: top;
     background-color: var(--plasma-colors-background);
-    /* background-image: var(--plasma-colors-gradient); */
+    background-image: var(--plasma-colors-gradient);
     color: var(--plasma-colors-text);
   }
   img {
