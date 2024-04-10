@@ -111,7 +111,6 @@
   main {
     width: 100%;
     height: 100%;
-    font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
     background-color: var(--plasma-colors-background);
@@ -121,7 +120,7 @@
   img {
     width: 50%;
     margin: 20px;
-   }
+  }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
@@ -142,7 +141,7 @@
     border: 1px solid var(--plasma-colors-buttonWarning)
   }
   .buttons {
-    display: contents;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -150,24 +149,23 @@
     min-width: 160px;
   }
   button {
-    margin: 1%;
-    padding: calc(17px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
+    margin: 2%;
+    padding: calc(7px + (15 - 7) * ((100vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
-    font-weight: 200;
-    font-size: calc(22px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
+    font-weight: 700;
+    font-size: calc(12px + (18 - 12) * ((100vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
-    border-radius: 9px;
+    border-radius: 5px;
     user-select: none;
   }
-  button:focus, button:target, button:active, button:visited {
-    background: #4cc0ff;
+  button:hover, button:focus {
+    background: var(--plasma-colors-buttonFocused);
   }
   h2 {
     text-align: center;
     margin: 0;
-    font-weight: 200;
-    font-size: calc(20px + (26 - 20) * ((150vw - 200px) / (1440 - 200)));
+    font-size: calc(20px + (26 - 20) * ((100vw - 200px) / (1440 - 200)));
   }
 </style>
