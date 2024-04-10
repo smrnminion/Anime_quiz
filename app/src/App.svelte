@@ -5,6 +5,7 @@
   import {logger} from "./utils";
 
   let assistant;
+  let isDisabled = false;
   let state = {
     count: 0,
     curr_anim: {name: 'Токийский гуль', iso: '1'},
@@ -75,6 +76,10 @@
     if (state.variants[i].name !== state.curr_anim.name) {
       state.variants[i].used = true;
     }
+    isDisabled = true;
+    setTimeout(() => {
+      isDisabled = false;
+    }, 500);
     assistant.sendData({
       action: {
         action_id: 'click',
@@ -92,7 +97,7 @@
       <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button  id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
+          <button  id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
         {/each}
       </div>
   </div>
