@@ -124,7 +124,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 7%;
+    margin-top: 5%;
     height: 120%;
   }
   .used {
