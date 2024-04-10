@@ -5,7 +5,6 @@
   import {logger} from "./utils";
 
   let assistant;
-  let isDisabled = false;
   let state = {
     count: 0,
     curr_anim: {name: 'Токийский гуль', iso: '1'},
@@ -61,28 +60,21 @@
   });
 
   function sleep(milliseconds) {
-    document.getElementById("demo").innerHTML = Date();
-    document.getElementsByClassName("button")[0].setAttribute('disabled', 'true');
-    document.getElementsByClassName("button")[1].setAttribute('disabled', 'true');
-    document.getElementsByClassName("button")[2].setAttribute('disabled', 'true');
-    setTimeout(function(){
-      document.getElementsByClassName("button")[0].removeAttribute('disabled');
-      document.getElementsByClassName("button")[1].removeAttribute('disabled');
-      document.getElementsByClassName("button")[2].removeAttribute('disabled');
-    }, milliseconds)
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
   function handleClick(i) {
+    sleep(100);
     if (state.endGame){
       return;
     }
     if (state.variants[i].name !== state.curr_anim.name) {
       state.variants[i].used = true;
     }
-    isDisabled = true;
-    setTimeout(() => {
-      isDisabled = false;
-    }, 500);
     assistant.sendData({
       action: {
         action_id: 'click',
@@ -100,7 +92,7 @@
       <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button  id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
+          <button  id='button-{i}' class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
         {/each}
       </div>
   </div>
@@ -111,6 +103,7 @@
   main {
     width: 100%;
     height: 100%;
+    font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
     background-color: var(--plasma-colors-background);
@@ -118,20 +111,20 @@
     color: var(--plasma-colors-text);
   }
   img {
-    width: 50%;
-    margin: 20px;
+    width: 80%;
+    margin: 5px;
+    border-radius: 9px;
   }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 30px 10px;
-    width: 100vw;
     max-width: 1000px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: -5%;
+    margin-bottom: 7%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
@@ -141,7 +134,7 @@
     border: 1px solid var(--plasma-colors-buttonWarning)
   }
   .buttons {
-    display: flex;
+    display: contents;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -149,23 +142,24 @@
     min-width: 160px;
   }
   button {
-    margin: 2%;
-    padding: calc(7px + (15 - 7) * ((100vw - 200px) / (1440 - 200)));
+    margin: 1%;
+    padding: calc(17px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
-    font-weight: 700;
-    font-size: calc(12px + (18 - 12) * ((100vw - 200px) / (1440 - 200)));
+    font-weight: 200;
+    font-size: calc(22px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
-    border-radius: 5px;
+    border-radius: 9px;
     user-select: none;
   }
-  button:hover, button:focus {
-    background: var(--plasma-colors-buttonFocused);
+  button:focus, button:target, button:active, button:visited {
+    background: #4cc0ff;
   }
   h2 {
     text-align: center;
     margin: 0;
-    font-size: calc(20px + (26 - 20) * ((100vw - 200px) / (1440 - 200)));
+    font-weight: 200;
+    font-size: calc(20px + (26 - 20) * ((150vw - 200px) / (1440 - 200)));
   }
 </style>
