@@ -105,7 +105,7 @@
     height: 120%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
-    place-items: center;
+    place-items: top;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
     color: var(--plasma-colors-text);
