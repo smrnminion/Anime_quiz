@@ -102,7 +102,7 @@
 <style>
   main {
     width: 100%;
-    height: 150%;
+    height: 170%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
