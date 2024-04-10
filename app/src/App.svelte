@@ -102,10 +102,10 @@
 <style>
   main {
     width: 100%;
-    height: 120%;
+    height: 150%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
-    place-items: top;
+    place-items: center;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
     background-repeat: no-repeat;
@@ -126,7 +126,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: 5%;
-    height: 120%;
+    height: 90%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
