@@ -108,6 +108,7 @@
     place-items: top;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
+    background-repeat: no-repeat;
     color: var(--plasma-colors-text);
   }
   img {
