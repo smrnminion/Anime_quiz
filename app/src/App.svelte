@@ -130,7 +130,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 3px;
+    margin-top: -10px;
     height: 90%;
   }
   .used {
