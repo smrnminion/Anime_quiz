@@ -119,6 +119,7 @@
   img {
     width: 40%;
     border-radius: 9px;
+    display: inline-block;
   }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
@@ -140,7 +141,7 @@
     border: 1px solid var(--plasma-colors-buttonWarning)
   }
   .buttons {
-    display: contents;
+    display: inline-block;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
@@ -148,12 +149,12 @@
     min-width: 160px;
   }
   button {
-    margin: 5px;
+    margin: 2px;
     padding: calc(7px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
-    font-size: calc(22px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
+    font-size: calc(6px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
