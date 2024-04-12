@@ -107,7 +107,7 @@
 <style>
   main {
     width: 100%;
-    height: 188%;
+    height: 100%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
@@ -130,7 +130,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: -25px;
+    margin-top: -30px;
     height: 90%;
   }
   .used {
