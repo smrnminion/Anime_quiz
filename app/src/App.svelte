@@ -117,7 +117,7 @@
     color: var(--plasma-colors-text);
   }
   img {
-    width: 50%;
+    width: 40%;
     border-radius: 9px;
   }
   .card {
@@ -149,7 +149,7 @@
   }
   button {
     margin: 5px;
-    padding: calc(17px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
+    padding: calc(7px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
