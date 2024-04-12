@@ -140,7 +140,7 @@
     border: 1px solid var(--plasma-colors-buttonWarning)
   }
   .buttons {
-    display: flex;
+    display: grid;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
