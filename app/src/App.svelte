@@ -153,7 +153,7 @@
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 200;
-    font-size: calc(10px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
+    font-size: calc(8px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
