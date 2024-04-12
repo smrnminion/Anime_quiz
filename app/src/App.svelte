@@ -148,7 +148,7 @@
     min-width: 160px;
   }
   button {
-    margin: 2px;
+    
     padding: calc(7px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
