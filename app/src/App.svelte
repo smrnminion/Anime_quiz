@@ -97,7 +97,7 @@
       <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button  id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button><br/>
+          <button  id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
       </div>
   </div>
