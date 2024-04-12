@@ -146,6 +146,7 @@
     justify-content: center;
     width: 90%;
     min-width: 160px;
+    margin-top: 10px;
   }
   button {
     
