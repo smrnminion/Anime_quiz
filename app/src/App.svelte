@@ -125,7 +125,7 @@
     background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
-    padding: 30px 10px;
+    padding: 5px 5px;
     max-width: 1000px;
     display: flex;
     align-items: center;
