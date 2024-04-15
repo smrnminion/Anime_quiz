@@ -91,15 +91,18 @@
 
 <main>
   <div class="card">
-    <h2>Правильные ответы: {state.count}</h2>
-    <h2>НР: {state.lifes}</h2>
-      <!-- svelte-ignore a11y-missing-attribute -->
+    <div class="header">
+      <h2>Правильные ответы: {state.count}</h2>
+      <h2>НР: {state.lifes}</h2>
+    </div>
+    <div class="content">
       <img src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button  id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
       </div>
+    </div>
   </div>
 </main>
 
@@ -131,6 +134,16 @@
     flex-direction: column;
     margin-top: -30px;
     height: 90%;
+  }
+  .header {
+    width: 100%;
+    text-align: center;
+  }
+  .content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
   .used {
     background-color: var(--plasma-colors-buttonCritical);
