@@ -122,7 +122,7 @@
   img {
     width: 60%;
     border-radius: 9px;
-    margin-left: 5%;
+    margin-left: 3%;
   }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
