@@ -161,6 +161,7 @@
     width: 90%;
     min-width: 160px;
     margin-top: 10px;
+    margin-left: 20px;
   }
   button {
     
