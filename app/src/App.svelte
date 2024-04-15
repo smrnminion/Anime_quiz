@@ -120,9 +120,9 @@
     color: var(--plasma-colors-text);
   }
   img {
-    width: 40%;
+    width: 60%;
     border-radius: 9px;
-    margin-left: 10%;
+    margin-left: 5%;
   }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
