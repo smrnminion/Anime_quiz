@@ -122,6 +122,7 @@
   img {
     width: 40%;
     border-radius: 9px;
+    margin-left: 10%;
   }
   .card {
     background-color: rgba(255, 255, 255, 0.15);
@@ -142,7 +143,7 @@
   .content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
   }
   .used {
