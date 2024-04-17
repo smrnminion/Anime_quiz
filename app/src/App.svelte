@@ -113,7 +113,7 @@
     height: 100%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
-    place-items: center;
+    place-items: top;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
     background-repeat: no-repeat;
@@ -131,8 +131,9 @@
     padding: 5px 5px;
     max-width: 1000px;
     display: flex;
-    align-items: top;
+    align-items: center;
     flex-direction: column;
+    margin-top: 50%;
     height: 50%;
   }
   .header {
