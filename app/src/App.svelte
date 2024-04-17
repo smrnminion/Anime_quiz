@@ -133,7 +133,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 50%;
+    height: 100%;
   }
   .header {
     width: 100%;
