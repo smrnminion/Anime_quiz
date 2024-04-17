@@ -131,9 +131,8 @@
     padding: 5px 5px;
     max-width: 1000px;
     display: flex;
-    align-items: center;
+    align-items: top;
     flex-direction: column;
-    margin-top: -30px;
     height: 50%;
   }
   .header {
