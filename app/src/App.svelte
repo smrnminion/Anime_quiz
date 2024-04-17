@@ -134,7 +134,7 @@
     align-items: center;
     flex-direction: column;
     margin-top: -30px;
-    height: 90%;
+    height: 50%;
   }
   .header {
     width: 100%;
@@ -169,7 +169,7 @@
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
     font-weight: 600;
-    font-size: calc(8px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
+    font-size: calc(15px + (18 - 12) * ((150vw - 200px) / (1440 - 200)));
     transition: background ease 0.5s;
     border: 1px solid transparent;
     border-radius: 9px;
