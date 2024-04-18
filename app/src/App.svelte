@@ -113,7 +113,7 @@
     height: 100%;
     font-family: "Oswald", sans-serif !important;
     display: grid;
-    place-items: top;
+    place-items: center;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
     background-repeat: no-repeat;
@@ -173,9 +173,6 @@
     border: 1px solid transparent;
     border-radius: 9px;
     user-select: none;
-  }
-  button:focus, button:target, button:active, button:visited {
-    background: #4cc0ff;
   }
   h2 {
     text-align: center;
