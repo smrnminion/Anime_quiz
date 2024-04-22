@@ -141,7 +141,7 @@ function* script(r: SberRequest) {
       continue;
     }
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
-      afterCorrect();
+      //afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго! '
