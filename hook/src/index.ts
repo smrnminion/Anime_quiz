@@ -123,9 +123,9 @@ function* script(r: SberRequest) {
 
   while (unusedanime.length >= 1){
     if (r.type === 'SERVER_ACTION'){
+      rsp.msg = ''
+      rsp.msgJ = ''
       if (r.act?.action_id == 'click'){
-        rsp.msg = ''
-        rsp.msgJ = ''
         if (r.act.data == state.curr_anim.name){
           afterCorrect();
         }
