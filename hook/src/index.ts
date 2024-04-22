@@ -143,9 +143,9 @@ function* script(r: SberRequest) {
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
-    else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "invisible") {
-      rsp.msg = ''
-      rsp.msgJ = ''
+    else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "Invisible") {
+      rsp.msg = 'ку'
+      rsp.msgJ = 'ку'
       updateState();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
@@ -199,7 +199,6 @@ function* script(r: SberRequest) {
         rsp.msgJ = 'Вы можете начать заново, сказав «Заново» '
       } 
       else{
-        updateState(); 
         let temp = true;
         for (let i = 0; i < state.variants.length; i++){ 
           if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
