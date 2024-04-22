@@ -127,6 +127,10 @@ function* script(r: SberRequest) {
         if (r.act.data == state.curr_anim.name){
           afterCorrect();
         }
+        else if(r.act.data == "Invisible"){
+          rsp.msg = ''
+          rsp.msgJ = ''
+        }
           for (let i = 0; i < state.variants.length; i++){ 
             if(state.variants[i].name === r.act.data){
               if(!(state.variants[i].used)){
@@ -135,13 +139,11 @@ function* script(r: SberRequest) {
             }
           }
         }
-      }
-      rsp.data = {'type': 'close_app'}
       yield rsp;
       continue;
     }
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
-      //afterCorrect();
+      afterCorrect();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго! '
