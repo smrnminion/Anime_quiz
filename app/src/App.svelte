@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy, tick } from 'svelte';
   import { createSmartappDebugger, createAssistant } from '@sberdevices/assistant-client';
   import { setTheme } from './themes';
   import { logger } from "./utils";
