@@ -144,9 +144,9 @@ function* script(r: SberRequest) {
       afterCorrect();
     }
     else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "invisible") {
-      updateState();
       rsp.msg = ''
       rsp.msgJ = ''
+      updateState();
     }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго! '
