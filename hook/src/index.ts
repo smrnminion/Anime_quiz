@@ -124,13 +124,10 @@ function* script(r: SberRequest) {
   while (unusedanime.length >= 1){
     if (r.type === 'SERVER_ACTION'){
       if (r.act?.action_id == 'click'){
+        rsp.msg = ''
+        rsp.msgJ = ''
         if (r.act.data == state.curr_anim.name){
           afterCorrect();
-        }
-        else if(r.act.data == "Invisible"){
-          updateState();
-          rsp.msg = 'ку'
-          rsp.msgJ = 'ку'
         }
         else{ 
           for (let i = 0; i < state.variants.length; i++){ 
