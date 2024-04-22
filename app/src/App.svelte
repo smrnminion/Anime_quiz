@@ -28,12 +28,31 @@
     assistant = createAssistant({ getState: () => ({ state }) });
     assistant.on('start', () => logger.log('SmartApp started'));
     assistant.on('data', handleData);
+
+    // Добавление обработчика события visibilitychange
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   });
 
-  // Сохранение состояния перед выгрузкой страницы
   onDestroy(() => {
     localStorage.setItem('appState', JSON.stringify(state));
+    document.removeEventListener('visibilitychange', handleVisibilityChange);
   });
+
+  function handleVisibilityChange() {
+    if (document.visibilityState === 'visible') {
+      logger.log('Returning from screensaver');
+      autoClickOnEntry();
+    }
+  }
+
+  async function autoClickOnEntry() {
+    await tick();  // Убедитесь, что весь UI готов
+    const unusedVariantIndex = state.variants.findIndex(v => !v.used);
+    if (unusedVariantIndex !== -1) {
+      handleClick(unusedVariantIndex);
+    }
+  }
+
 
   function handleData(event) {
     if (!event.type) return;
