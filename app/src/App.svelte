@@ -22,14 +22,26 @@
 
   let character = 'eva';
   $: setTheme(character);
-  
+
   let buttons = [];
 
   onMount(() => {
     function getState() {
       return {state}
     }
+    // Восстановление состояния из localStorage
+    const savedState = localStorage.getItem('appState');
+    if (savedState) {
+      state = JSON.parse(savedState);
+    }
 
+    // Инициализация помощника
+    assistant = createAssistant({ getState: () => ({ state }) });
+    assistant.on('data', handleAssistantData);
+
+    // Сохранение состояния при изменении
+    $: localStorage.setItem('appState', JSON.stringify(state));
+    
     const init = () => {
       return createAssistant({getState});
     };
