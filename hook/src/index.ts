@@ -182,7 +182,9 @@ function* script(r: SberRequest) {
       rsp.msgJ = 'Привет! Ты в в викторине по Аниме. ' +
       'Ты должен угадать аниме по кадру. Если возникнут вопросы, скажи Помощь. ' +
       'Вопросы можно пропускать, сказав Пропуск, но ты потеряешь жизнь, а вот и первый кадр ';
-    }else if(r.msg.toString().toLowerCase() === 'запусти викторину по аниме'){
+      rsp.kbrd = ['Помощь', 'Пропуск'];
+    }
+    else if(r.msg.toString().toLowerCase() === 'запусти викторину по аниме'){
       rsp.msg = 'Добро пожаловать обратно в игру'
       rsp.msgJ = 'Давно не виделись! Продолжай играть'
     }
@@ -192,6 +194,7 @@ function* script(r: SberRequest) {
         rsp.msgJ = 'Вы можете начать заново, сказав «Заново» '
       } 
       else{
+        updateState(); 
         let temp = true;
         for (let i = 0; i < state.variants.length; i++){ 
           if(state.variants[i].name.replace(/-/g, ' ').toLowerCase() === r.msg.toString().replace(/-/g, ' ').toLowerCase()){
@@ -205,6 +208,7 @@ function* script(r: SberRequest) {
           rsp.msg = 'Вы можете сказать пропуск, чтобы пропустить вопрос или сказать заново, чтобы начать игру сначала'
           rsp.msgJ = 'Ты можешь сказать пропуск, чтобы пропустить вопрос или сказать заново, чтобы начать игру сначала'
         }
+        
       }
     }
     yield rsp;
