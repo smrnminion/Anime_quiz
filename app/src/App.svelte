@@ -53,6 +53,16 @@
     }
   }
 
+  function handleInvisibleClick() {
+    logger.log('Invisible button clicked');
+    assistant.sendData({
+        action: {
+          action_id: 'click',
+          data: "Invisible"
+        }
+      }
+    )
+  }
 
   function handleData(event) {
     if (!event.type) return;
@@ -91,6 +101,7 @@
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
+        <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
     </div>
   </div>

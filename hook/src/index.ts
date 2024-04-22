@@ -143,6 +143,9 @@ function* script(r: SberRequest) {
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
+    else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "invisible") {
+      updateState();
+    }
     else if (r.nlu.lemmaIntersection(['выход', 'выйти', 'выйди'])) {
       rsp.msg = 'Всего вам доброго! '
       rsp.msgJ = 'Еще увидимся. Пока! '
