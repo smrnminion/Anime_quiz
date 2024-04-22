@@ -14,8 +14,7 @@
     variants: [
       { name: 'Аниме 1', used: false },
       { name: 'Аниме 2', used: false },
-      { name: 'Аниме 3', used: false },
-      { name: 'screensaver', used: false },
+      { name: 'Аниме 3', used: false }
     ],
     lifes: 3,
     endGame: false
@@ -48,9 +47,22 @@
 
   async function autoClickOnEntry() {
     await tick();  // Убедитесь, что весь UI готов
-    handleClick(3);
+    const unusedVariantIndex = state.variants.findIndex(v => !v.used);
+    if (unusedVariantIndex !== -1) {
+      handleClick(unusedVariantIndex);
+    }
   }
 
+  function handleInvisibleClick() {
+    logger.log('Invisible button clicked');
+    assistant.sendData({
+        action: {
+          action_id: 'click',
+          data: "Invisible"
+        }
+      }
+    );
+  }
 
   function handleData(event) {
     if (!event.type) return;
@@ -89,7 +101,7 @@
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
-        <button id="invisible-button" on:click={() => {handleClick(3)}} style="display: none;">screensaver</button>
+        <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
     </div>
   </div>
