@@ -58,7 +58,7 @@
           data: "Invisible"
         }
       }
-    )
+    );
   }
 
   function handleData(event) {
