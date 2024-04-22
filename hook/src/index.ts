@@ -143,7 +143,7 @@ function* script(r: SberRequest) {
     if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === state.curr_anim.name.toString().replace(/-/g, ' ').toLowerCase()) {
       afterCorrect();
     }
-    else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "Invisible") {
+    else if (r.msg.toString().replace(/-/g, ' ').toLowerCase() === "screensaver") {
       rsp.msg = 'ку'
       rsp.msgJ = 'ку'
       updateState();
