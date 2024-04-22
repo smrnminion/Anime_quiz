@@ -127,7 +127,7 @@ function* script(r: SberRequest) {
         if (r.act.data == state.curr_anim.name){
           afterCorrect();
         }
-        else if(r.act.data == "screensaver"){
+        else if(r.act.data == "Invisible"){
           updateState();
           rsp.msg = 'ку'
           rsp.msgJ = 'ку'
