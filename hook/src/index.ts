@@ -123,13 +123,11 @@ function* script(r: SberRequest) {
 
   while (unusedanime.length >= 1){
     if (r.type === 'SERVER_ACTION'){
-      rsp.msg = ''
-      rsp.msgJ = ''
       if (r.act?.action_id == 'click'){
+        rsp.data = {'type': 'close_app'}
         if (r.act.data == state.curr_anim.name){
           afterCorrect();
         }
-        else{ 
           for (let i = 0; i < state.variants.length; i++){ 
             if(state.variants[i].name === r.act.data){
               if(!(state.variants[i].used)){
