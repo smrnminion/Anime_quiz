@@ -1,62 +1,91 @@
 <script lang="ts">
-  import { onMount, onDestroy } from 'svelte';
-  import { createSmartappDebugger, createAssistant } from '@sberdevices/assistant-client';
-  import { setTheme } from './themes';
-  import { logger } from "./utils";
+  import {onMount} from 'svelte';
+  import {createSmartappDebugger, createAssistant} from '@sberdevices/assistant-client';
+  import {setTheme} from './themes';
+  import {logger} from "./utils";
 
   let assistant;
   let isDisabled = false;
-
-  // Загрузка состояния из localStorage или установка начального состояния
-  let state = JSON.parse(localStorage.getItem('appState')) || {
+  let state = {
     count: 0,
-    curr_anim: { name: 'Токийский гуль', iso: '1' },
+    curr_anim: {name: 'Токийский гуль', iso: '1'},
     variants: [
-      { name: 'Аниме 1', used: false },
-      { name: 'Аниме 2', used: false },
-      { name: 'Аниме 3', used: false }
+      {name: 'Аниме 1', used: false},
+      {name: 'Аниме 2', used: false},
+      {name: 'Аниме 3', used: false}
     ],
     lifes: 3,
     endGame: false
   };
 
   let initPhrase = 'запусти викторину по аниме';
+
   let character = 'eva';
   $: setTheme(character);
 
+  let buttons = [];
+
   onMount(() => {
-    assistant = createAssistant({ getState: () => ({ state }) });
-    assistant.on('start', () => logger.log('SmartApp started'));
-    assistant.on('data', handleData);
-  });
-
-  // Сохранение состояния перед выгрузкой страницы
-  onDestroy(() => {
-    localStorage.setItem('appState', JSON.stringify(state));
-  });
-
-  function handleData(event) {
-    if (!event.type) return;
-    if (event.type === 'character') character = event.character.id;
-    if (event.type === 'smart_app_data') {
-      state = event.smart_app_data;
+    function getState() {
+      return {state}
     }
-    logger.log('Data event:', event);
+
+    const init = () => {
+      return createAssistant({getState});
+    };
+    assistant = init();
+
+    assistant.on('start', () => {
+      logger.log('SmartApp started');
+    });
+
+    assistant.on('data', event => {
+      if (!event.type) {
+        return;
+      }
+
+      if (event.type === 'character') {
+        character = event.character.id;
+      }
+
+      if (event.type === 'smart_app_data') {
+        if (event.smart_app_data.type === 'close_app') {
+          logger.log('Closing app')
+          assistant.close();
+          return;
+        }
+        state = event.smart_app_data;
+      }
+      logger.log('data event:', event);
+    });
+  });
+
+  function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
   }
 
   function handleClick(i) {
-    if (state.endGame) return;
+    sleep(100);
+    if (state.endGame){
+      return;
+    }
     if (state.variants[i].name !== state.curr_anim.name) {
       state.variants[i].used = true;
     }
     isDisabled = true;
-    setTimeout(() => isDisabled = false, 500);
+    setTimeout(() => {
+      isDisabled = false;
+    }, 500);
     assistant.sendData({
       action: {
         action_id: 'click',
         data: state.variants[i].name
       }
-    });
+    })
   }
 </script>
 
