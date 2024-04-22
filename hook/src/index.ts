@@ -128,9 +128,9 @@ function* script(r: SberRequest) {
           afterCorrect();
         }
         else if(r.act.data == "screensaver"){
+          updateState();
           rsp.msg = 'ку'
           rsp.msgJ = 'ку'
-          updateState();
         }
         else{ 
           for (let i = 0; i < state.variants.length; i++){ 
