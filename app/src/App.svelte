@@ -47,10 +47,7 @@
 
   async function autoClickOnEntry() {
     await tick();  // Убедитесь, что весь UI готов
-    const unusedVariantIndex = state.variants.findIndex(v => !v.used);
-    if (unusedVariantIndex !== -1) {
-      handleClick(unusedVariantIndex);
-    }
+    handleInvisibleClick()
   }
 
   function handleInvisibleClick() {
