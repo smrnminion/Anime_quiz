@@ -6,6 +6,7 @@
 
   let assistant;
   let isDisabled = false;
+  let isHidden = false;
 
   // Загрузка состояния из localStorage или установка начального состояния
   let state = JSON.parse(localStorage.getItem('appState')) || {
@@ -42,6 +43,10 @@
     if (document.visibilityState === 'visible') {
       logger.log('Returning from screensaver');
       autoClickOnEntry();
+      isHidden = false;
+    }
+    if (document.visibilityState !== 'visible') {
+      isHidden = true;
     }
   }
 
@@ -87,6 +92,7 @@
 
 <main>
   <div class="card">
+    {#if isHidden}
     <div class="header">
       <h2>Правильные ответы: {state.count}</h2>
       <h2>НР: {state.lifes}</h2>
@@ -100,6 +106,7 @@
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
     </div>
+    {/if}
   </div>
 </main>
 
