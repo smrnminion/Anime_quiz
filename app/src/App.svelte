@@ -45,7 +45,7 @@
       autoClickOnEntry();
       isHidden = false;
     }
-    if (document.visibilityState !== 'visible') {
+    if (document.visibilityState === 'hidden') {
       isHidden = true;
     }
   }
@@ -92,7 +92,7 @@
 
 <main>
   <div class="card">
-    {#if isHidden}
+    {#if !isHidden}
     <div class="header">
       <h2>Правильные ответы: {state.count}</h2>
       <h2>НР: {state.lifes}</h2>
