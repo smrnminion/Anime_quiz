@@ -43,7 +43,7 @@
     if (document.visibilityState === 'visible') {
       logger.log('Returning from screensaver');
       autoClickOnEntry();
-      isHidden = false;
+      setTimeout(() => isHidden = false, 500);
     }
     if (document.visibilityState === 'hidden') {
       isHidden = true;
