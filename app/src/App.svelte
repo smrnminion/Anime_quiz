@@ -30,7 +30,7 @@
     assistant.on('data', handleData);
 
     // Добавление обработчика события visibilitychange
-    // document.addEventListener('visibilitychange', handleVisibilityChange);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
   });
 
   onDestroy(() => {
@@ -46,7 +46,6 @@
   }
 
   async function autoClickOnEntry() {
-    // await tick();  // Убедитесь, что весь UI готов
     handleInvisibleClick();
   }
 
