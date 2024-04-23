@@ -91,8 +91,8 @@
 </script>
 
 <main>
+  {#if !isHidden}
   <div class="card">
-    {#if !isHidden}
     <div class="header">
       <h2>Правильные ответы: {state.count}</h2>
       <h2>НР: {state.lifes}</h2>
@@ -106,8 +106,8 @@
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
     </div>
-    {/if}
   </div>
+  {/if}
 </main>
 
 
