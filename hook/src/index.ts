@@ -34,9 +34,11 @@ function* script(r: SberRequest) {
   }
 
   function updateState() {
+    let temp_variants = [] as any[];
+    temp_variants.push(curr_anim.name);
     let curr_anim = choice(unusedanime, true);
     let variants = [] as any[];
-    let temp_variants = [] as any[]
+    
     variants.push({name: curr_anim.name, used: false});
     temp_variants.push(curr_anim.name);
     
