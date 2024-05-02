@@ -95,7 +95,7 @@
   <div class="card">
     <div class="header">
       <h2>Правильные ответы: {state.count} из 47</h2>
-      <h2>НР: {state.lifes}</h2>
+      <h2>Жизни: {state.lifes}</h2>
     </div>
     <div class="content">
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
