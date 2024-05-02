@@ -18,6 +18,7 @@
       { name: 'Аниме 3', used: false }
     ],
     lifes: 3,
+    total: 313337,
     endGame: false
   };
 
@@ -94,7 +95,7 @@
   {#if !isHidden}
   <div class="card">
     <div class="header">
-      <h2>Правильные ответы: {state.count} из 47</h2>
+      <h2>Правильные ответы: {state.count} из {state.total}</h2>
       <h2>Жизни: {state.lifes}</h2>
     </div>
     <div class="content">

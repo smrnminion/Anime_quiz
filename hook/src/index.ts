@@ -27,6 +27,7 @@ function* script(r: SberRequest) {
   let unusedanime = [...anime];
   const state = {
     count: 0,
+    total: anime.length,
     curr_anim: {name: '', iso: ''},
     variants: [] as any[],
     lifes: 3,
