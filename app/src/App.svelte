@@ -127,17 +127,6 @@
   }
 
   let touchTarget = null;
-
-  function handleTouchStart(event) {
-    touchTarget = event.currentTarget; 
-  }
-
-  function handleTouchEnd(event) {
-    if (event.target !== touchTarget) {
-      touchTarget.blur();
-    }
-    touchTarget = null;
-  }
 </script>
 
 <main>
