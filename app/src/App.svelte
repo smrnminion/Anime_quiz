@@ -23,16 +23,23 @@
     endGame: false
   };
 
+  function getNextIndex(step) {
+    let currentIndex = focusedIndex;
+    do {
+      currentIndex = (currentIndex + step + state.variants.length) % state.variants.length;
+    } while (state.variants[currentIndex].used && currentIndex !== focusedIndex);
+    return currentIndex;
+  }
+
   function handleKeyEvents(event) {
-    const numberOfButtons = state.variants.length;
     switch(event.code) {
       case 'ArrowDown':
       case 'ArrowRight':
-        focusedIndex = (focusedIndex + 1) % numberOfButtons;
+        focusedIndex = getNextIndex(1);
         break;
       case 'ArrowUp':
       case 'ArrowLeft':
-        focusedIndex = (focusedIndex - 1 + numberOfButtons) % numberOfButtons;
+        focusedIndex = getNextIndex(-1);
         break;
       case 'Enter':
         handleClick(focusedIndex);
