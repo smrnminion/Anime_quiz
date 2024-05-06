@@ -108,7 +108,7 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled} class:used={used} on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled || used} class:used={used} on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
@@ -181,7 +181,7 @@
     user-select: none;
     outline: none;
   }
-
+disabled={isDisabled || used}
   button:focus, button.focused { /* Styles for focused state */
     transform: scale(1.1); /* Scales the button to increase visibility */
     border-color: var(--plasma-colors-buttonFocus);
