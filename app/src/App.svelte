@@ -173,7 +173,16 @@
     border: 1px solid transparent;
     border-radius: 9px;
     user-select: none;
+    outline: none;
   }
+
+  button:focus, button.focused { /* Styles for focused state */
+    transform: scale(1.1); /* Scales the button to increase visibility */
+    border-color: var(--plasma-colors-buttonFocus);
+    box-shadow: 0 0 8px 3px var(--plasma-colors-buttonFocus);
+    z-index: 10; /* Ensures the button is visibly on top when scaled */
+  }
+
   h2 {
     text-align: center;
     margin: 0;
