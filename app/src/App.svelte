@@ -136,7 +136,7 @@
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 5px 5px;
-    max-width: 90%;
+    width: 95%;
     display: flex;
     align-items: center;
     flex-direction: column;
