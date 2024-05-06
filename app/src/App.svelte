@@ -76,12 +76,18 @@
   }
 
   function handleClick(i) {
-    if (state.endGame) return;
-    if (state.variants[i].name !== state.curr_anim.name) {
-      state.variants[i].used = true;
+    if (state.endGame) return; 
+
+    const isCorrect = state.variants[i].name === state.curr_anim.name;
+    if (!isCorrect) {
+      state.variants[i].used = true; 
+    } else {
+      state.count += 1; 
     }
-    isDisabled = true;
-    setTimeout(() => isDisabled = false, 500);
+
+    isDisabled = true; 
+    setTimeout(() => isDisabled = false, 500); 
+
     assistant.sendData({
       action: {
         action_id: 'click',
@@ -102,7 +108,7 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled} class:used on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled} class:used={used} on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
