@@ -6,7 +6,7 @@
 
   let assistant;
   let isDisabled = false;
-  let isHidden = false;
+  let isHidden = true;
   let focusedIndex = -1;
   let lastPress = "";
   
@@ -58,6 +58,7 @@
     assistant = createAssistant({ getState: () => ({ state }) });
     assistant.on('start', () => logger.log('SmartApp started'));
     assistant.on('data', handleData);
+    setTimeout(() => isHidden = false, 1000);
     window.addEventListener('keydown', handleKeyEvents);
     document.addEventListener('visibilitychange', handleVisibilityChange);
   });
