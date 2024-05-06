@@ -42,6 +42,7 @@
         focusedIndex = getNextIndex(-1);
         break;
       case 'Enter':
+      case 'Space':
         handleClick(focusedIndex);
         break;
     }
