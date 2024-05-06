@@ -219,7 +219,7 @@
     outline: none;
   }
 
-  button:focus, button.focused { 
+  button.focused { 
     transform: scale(1.1); 
     border-color: var(--plasma-colors-buttonFocus);
     box-shadow: 0 0 8px 3px var(--plasma-colors-buttonFocus);
