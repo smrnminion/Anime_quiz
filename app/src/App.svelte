@@ -151,13 +151,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-  }
-  .used {
-    background-color: var(--plasma-colors-buttonCritical);
-  }
-  .used:hover, .used:focus {
-    background: var(--plasma-colors-buttonCritical);
-    border: 1px solid var(--plasma-colors-buttonWarning)
+    flex-direction: row; /* default direction */
   }
   .buttons {
     display: grid;
@@ -170,7 +164,6 @@
     margin-left: 20px;
   }
   button {
-    
     padding: calc(7px + (15 - 7) * ((150vw - 200px) / (1440 - 200)));
     background: var(--plasma-colors-buttonAccent);
     color: var(--plasma-colors-buttonPrimary);
@@ -188,8 +181,7 @@
     font-size: calc(20px + (26 - 20) * ((150vw - 200px) / (1440 - 200)));
   }
   .lds-dual-ring {
-
-  color: #ffffff
+    color: #ffffff
   }
   .lds-dual-ring,
   .lds-dual-ring:after {
@@ -211,12 +203,13 @@
     border-color: currentColor transparent currentColor transparent;
     animation: lds-dual-ring 1.2s linear infinite;
   }
-  @keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
+  @media (min-width: 1920px) {
+    .content {
+      flex-direction: column;
     }
-    100% {
-      transform: rotate(360deg);
+    .buttons {
+      width: 100%; /* Adjust width to fit below the image */
+      margin-left: 0; /* Adjust alignment */
     }
   }
 </style>
