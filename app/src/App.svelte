@@ -8,7 +8,7 @@
   let isDisabled = false;
   let isHidden = false;
   let focusedIndex = -1;
-
+  let lastPress = "";
   
   let state = JSON.parse(localStorage.getItem('appState')) || {
     count: 0,
@@ -32,6 +32,7 @@
   }
 
   function handleKeyEvents(event) {
+    lastPress = event.code;
     switch(event.code) {
       case 'ArrowDown':
       case 'ArrowRight':
@@ -144,6 +145,7 @@
     <div class="header">
       <h2>Правильные ответы: {state.count} из {state.total}</h2>
       <h2>Жизни: {state.lifes}</h2>
+      <h2>Книпка: {lastPress}</h2>
     </div>
     <div class="content">
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
