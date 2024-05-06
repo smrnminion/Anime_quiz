@@ -24,23 +24,6 @@
     endGame: false
   };
 
-  function handleKeyEvents(event: KeyboardEvent) {
-    const key = event.key;
-    const numberOfButtons = state.variants.length;
-    if (key === 'ArrowRight' || key === 'ArrowLeft') {
-      let newIndex = focusedIndex;
-      do {
-        if (key === 'ArrowRight') {
-          newIndex = (newIndex + 1) % numberOfButtons;
-        } else if (key === 'ArrowLeft') {
-          newIndex = (newIndex - 1 + numberOfButtons) % numberOfButtons;
-        }
-      } while (state.variants[newIndex].used && newIndex !== focusedIndex); // Continue until a non-used button is found or returns to the start
-
-      if (!state.variants[newIndex].used) {
-        focusedIndex = newIndex;
-      }
-    }
 
   let initPhrase = 'запусти викторину по аниме';
   let character = 'eva';
@@ -53,13 +36,11 @@
 
     // Добавление обработчика события visibilitychange
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    window.addEventListener('keydown', handleKeyEvents);
   });
 
   onDestroy(() => {
     localStorage.setItem('appState', JSON.stringify(state));
     document.removeEventListener('visibilitychange', handleVisibilityChange);
-    window.removeEventListener('keydown', handleKeyEvents);
   });
 
   function handleVisibilityChange() {
@@ -130,7 +111,7 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:mouseover={() => { focusedIndex = i; }} on:focus={() => { focusedIndex = i; }} on:click={() => {handleClick(i)}}>{used}</button>
+          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
@@ -203,7 +184,7 @@
     user-select: none;
     outline: none;
   }
-disabled={isDisabled || used}
+
   button:focus, button.focused { 
     transform: scale(1.1); 
     border-color: var(--plasma-colors-buttonFocus);
