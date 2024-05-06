@@ -10,7 +10,6 @@
   let focusedIndex = -1;
 
   
-  // Загрузка состояния из localStorage или установка начального состояния
   let state = JSON.parse(localStorage.getItem('appState')) || {
     count: 0,
     curr_anim: { name: 'Токийский гуль', iso: '1' },
@@ -20,10 +19,27 @@
       { name: 'Аниме 3', used: false }
     ],
     lifes: 3,
-    total: 313337,
+    total: 31337,
     endGame: false
   };
 
+  function handleKeyEvents(event) {
+    const numberOfButtons = state.variants.length;
+    switch(event.code) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        focusedIndex = (focusedIndex + 1) % numberOfButtons;
+        break;
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        focusedIndex = (focusedIndex - 1 + numberOfButtons) % numberOfButtons;
+        break;
+      case 'Enter':
+        handleClick(focusedIndex);
+        break;
+    }
+    event.preventDefault(); 
+  }
 
   let initPhrase = 'запусти викторину по аниме';
   let character = 'eva';
@@ -33,13 +49,13 @@
     assistant = createAssistant({ getState: () => ({ state }) });
     assistant.on('start', () => logger.log('SmartApp started'));
     assistant.on('data', handleData);
-
-    // Добавление обработчика события visibilitychange
+    window.addEventListener('keydown', handleKeyEvents);
     document.addEventListener('visibilitychange', handleVisibilityChange);
   });
 
   onDestroy(() => {
     localStorage.setItem('appState', JSON.stringify(state));
+    window.removeEventListener('keydown', handleKeyEvents);
     document.removeEventListener('visibilitychange', handleVisibilityChange);
   });
 
@@ -53,7 +69,7 @@
       isHidden = true;
     }
   }
-
+    
   async function autoClickOnEntry() {
     handleInvisibleClick();
   }
@@ -124,7 +140,12 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled || used} on:touchstart={handleTouchStart} on:touchend={handleTouchEnd} class:used={used} tabindex={used ? -1 : 0} on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled || used}
+           class:used={used} class:focused={i === focusedIndex}
+            on:mouseover={() => { focusedIndex = i; }}
+            on:focus={() => { focusedIndex = i; }}
+            on:click={() => {handleClick(i)}}
+            >{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
