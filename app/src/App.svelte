@@ -8,6 +8,24 @@
   let isDisabled = false;
   let isHidden = false;
 
+
+  function handleKeyEvents(event: KeyboardEvent) {
+    const key = event.key;
+    const numberOfButtons = state.variants.length;
+    if (key === 'ArrowRight' || key === 'ArrowLeft') {
+      let newIndex = focusedIndex;
+      do {
+        if (key === 'ArrowRight') {
+          newIndex = (newIndex + 1) % numberOfButtons;
+        } else if (key === 'ArrowLeft') {
+          newIndex = (newIndex - 1 + numberOfButtons) % numberOfButtons;
+        }
+      } while (state.variants[newIndex].used && newIndex !== focusedIndex); // Continue until a non-used button is found or returns to the start
+
+      if (!state.variants[newIndex].used) {
+        focusedIndex = newIndex;
+      }
+    }
   // Загрузка состояния из localStorage или установка начального состояния
   let state = JSON.parse(localStorage.getItem('appState')) || {
     count: 0,
@@ -33,11 +51,13 @@
 
     // Добавление обработчика события visibilitychange
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('keydown', handleKeyEvents);
   });
 
   onDestroy(() => {
     localStorage.setItem('appState', JSON.stringify(state));
     document.removeEventListener('visibilitychange', handleVisibilityChange);
+    window.removeEventListener('keydown', handleKeyEvents);
   });
 
   function handleVisibilityChange() {
