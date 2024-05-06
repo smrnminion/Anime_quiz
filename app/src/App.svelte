@@ -146,7 +146,6 @@
     <div class="header">
       <h2>Правильные ответы: {state.count} из {state.total}</h2>
       <h2>Жизни: {state.lifes}</h2>
-      <h2>Книпка: {lastPress}</h2>
     </div>
     <div class="content">
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
@@ -230,14 +229,12 @@
     user-select: none;
     outline: none;
   }
-
   button.focused { 
     transform: scale(1.1); 
     border-color: var(--plasma-colors-buttonFocus);
     box-shadow: 0 0 8px 3px var(--plasma-colors-buttonFocus);
     z-index: 10; 
   }
-
   .used {
     background-color: var(--plasma-colors-buttonCritical); 
     color: white; 
@@ -279,6 +276,13 @@
     .buttons {
       width: 100%; /* Adjust width to fit below the image */
       margin-left: 0; /* Adjust alignment */
+    }
+    button {
+      font-size: calc(20px + (24 - 18) * ((150vw - 1920px) / (2560 - 1920)));
+      padding: 10px 15px; /* Slightly smaller height */
+    }
+    h2 {
+      font-size: calc(26px + (32 - 26) * ((150vw - 1920px) / (2560 - 1920)));
     }
   }
 </style>
