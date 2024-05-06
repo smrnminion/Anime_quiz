@@ -7,7 +7,22 @@
   let assistant;
   let isDisabled = false;
   let isHidden = false;
+  let focusedIndex = -1;
 
+  
+  // Загрузка состояния из localStorage или установка начального состояния
+  let state = JSON.parse(localStorage.getItem('appState')) || {
+    count: 0,
+    curr_anim: { name: 'Токийский гуль', iso: '1' },
+    variants: [
+      { name: 'Аниме 1', used: false },
+      { name: 'Аниме 2', used: false },
+      { name: 'Аниме 3', used: false }
+    ],
+    lifes: 3,
+    total: 313337,
+    endGame: false
+  };
 
   function handleKeyEvents(event: KeyboardEvent) {
     const key = event.key;
@@ -26,19 +41,6 @@
         focusedIndex = newIndex;
       }
     }
-  // Загрузка состояния из localStorage или установка начального состояния
-  let state = JSON.parse(localStorage.getItem('appState')) || {
-    count: 0,
-    curr_anim: { name: 'Токийский гуль', iso: '1' },
-    variants: [
-      { name: 'Аниме 1', used: false },
-      { name: 'Аниме 2', used: false },
-      { name: 'Аниме 3', used: false }
-    ],
-    lifes: 3,
-    total: 313337,
-    endGame: false
-  };
 
   let initPhrase = 'запусти викторину по аниме';
   let character = 'eva';
@@ -128,7 +130,7 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:mouseover={() => { focusedIndex = i; }} on:focus={() => { focusedIndex = i; }} on:click={() => {handleClick(i)}}>{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
