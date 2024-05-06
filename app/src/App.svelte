@@ -274,15 +274,15 @@
       flex-direction: column;
     }
     .buttons {
-      width: 100%; /* Adjust width to fit below the image */
-      margin-left: 0; /* Adjust alignment */
+      width: 100%; 
+      margin-left: 0;
     }
     button {
-      font-size: calc(20px + (24 - 18) * ((150vw - 1920px) / (2560 - 1920)));
-      padding: 10px 15px; /* Slightly smaller height */
+      font-size: 40px;
+      padding: 12px 20px; 
     }
     h2 {
-      font-size: calc(26px + (32 - 26) * ((150vw - 1920px) / (2560 - 1920)));
+      font-size: 46px;
     }
   }
 </style>
