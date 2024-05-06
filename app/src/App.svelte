@@ -130,7 +130,7 @@
       <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
-          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:mouseover={() => { focusedIndex = i; }} on:focus={() => { focusedIndex = i; }} on:click={() => {handleClick(i)}}>{name}</button>
+          <button id='button-{i}' disabled={isDisabled || used} class:used={used} tabindex={used ? -1 : 0} on:mouseover={() => { focusedIndex = i; }} on:focus={() => { focusedIndex = i; }} on:click={() => {handleClick(i)}}>{used}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
       </div>
@@ -204,16 +204,16 @@
     outline: none;
   }
 disabled={isDisabled || used}
-  button:focus, button.focused { /* Styles for focused state */
-    transform: scale(1.1); /* Scales the button to increase visibility */
+  button:focus, button.focused { 
+    transform: scale(1.1); 
     border-color: var(--plasma-colors-buttonFocus);
     box-shadow: 0 0 8px 3px var(--plasma-colors-buttonFocus);
-    z-index: 10; /* Ensures the button is visibly on top when scaled */
+    z-index: 10; 
   }
 
   .used {
-    background-color: var(--plasma-colors-buttonCritical); /* Ensure this variable is defined and has a visible color */
-    color: white; /* Adjust text color for better visibility if needed */
+    background-color: var(--plasma-colors-buttonCritical); 
+    color: white; 
   }
   
   h2 {
