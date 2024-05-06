@@ -189,6 +189,11 @@
     z-index: 10; /* Ensures the button is visibly on top when scaled */
   }
 
+  .used {
+    background-color: var(--plasma-colors-buttonCritical); /* Ensure this variable is defined and has a visible color */
+    color: white; /* Adjust text color for better visibility if needed */
+  }
+  
   h2 {
     text-align: center;
     margin: 0;
