@@ -153,7 +153,6 @@
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled || used}
            class:used={used} class:focused={i === focusedIndex}
-            on:mouseover={() => { focusedIndex = i; }}
             on:focus={() => { focusedIndex = i; }}
             on:click={() => {handleClick(i)}}
             >{name}</button>
