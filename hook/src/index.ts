@@ -105,8 +105,8 @@ function* script(r: SberRequest) {
         useButton(r.msg);
       }
     }
-    rsp.msg = choice(['Не угадали ', 'Неверно ', 'Неправильно ']);
-    rsp.msgJ = choice(['Не угадал ', 'Неверно ', 'Неправильно ']);
+    rsp.msg = choice(['Не угадали', 'Неверно', 'Неправильно']);
+    rsp.msgJ = choice(['Не угадал', 'Неверно', 'Неправильно']);
     state.lifes -= 1;
     if (state.lifes <= 0){
       loseGame();
