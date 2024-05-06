@@ -120,6 +120,7 @@
         data: state.variants[i].name
       }
     });
+    focusedIndex = -1;
   }
 
   let touchTarget = null;
