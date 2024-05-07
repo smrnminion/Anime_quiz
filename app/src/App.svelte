@@ -61,6 +61,7 @@
     setTimeout(() => isHidden = false, 1000);
     window.addEventListener('keydown', handleKeyEvents);
     document.addEventListener('visibilitychange', handleVisibilityChange);
+    toggleFullScreen();
   });
 
   onDestroy(() => {
@@ -68,6 +69,14 @@
     window.removeEventListener('keydown', handleKeyEvents);
     document.removeEventListener('visibilitychange', handleVisibilityChange);
   });
+
+  function toggleFullScreen() {
+    if (document.fullscreenElement == null) { // Check if we are already in fullscreen
+      document.documentElement.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+    }
+  }
 
   function handleVisibilityChange() {
     if (document.visibilityState === 'visible') {
