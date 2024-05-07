@@ -51,7 +51,7 @@
   }
 
   let initPhrase = 'запусти викторину по аниме';
-  let character = 'eva';
+  let character = 'sber';
   $: setTheme(character);
 
   onMount(() => {
@@ -61,7 +61,6 @@
     setTimeout(() => isHidden = false, 1000);
     window.addEventListener('keydown', handleKeyEvents);
     document.addEventListener('visibilitychange', handleVisibilityChange);
-    toggleFullScreen();
   });
 
   onDestroy(() => {
@@ -70,13 +69,6 @@
     document.removeEventListener('visibilitychange', handleVisibilityChange);
   });
 
-  function toggleFullScreen() {
-    if (document.fullscreenElement == null) { // Check if we are already in fullscreen
-      document.documentElement.requestFullscreen().catch(err => {
-        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      });
-    }
-  }
 
   function handleVisibilityChange() {
     if (document.visibilityState === 'visible') {
@@ -202,7 +194,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    flex-direction: row; /* default direction */
+    flex-direction: row;
   }
   .buttons {
     display: grid;
@@ -267,6 +259,9 @@
     animation: lds-dual-ring 1.2s linear infinite;
   }
   @media (min-width: 1920px) {
+    img {
+      width: 53%;
+    }
     .content {
       flex-direction: column;
     }
