@@ -145,7 +145,7 @@
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled || used}
           class:used={used} class:focused={i === focusedIndex}
-          on:click={()={() => handleClick(i)}
+          on:click={() => handleClick(i)}
           >{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
