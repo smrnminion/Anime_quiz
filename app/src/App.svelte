@@ -161,7 +161,7 @@
 
 
 <style>
-    .background {
+  .background {
     position: absolute;
     top: 0;
     left: 0;
@@ -178,29 +178,30 @@
     font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
-    background-color: transparent; /* This will keep the main area clear so the background shows through */
-  }
-  .main-image {
-    width: 60%;
-    border-radius: 9px;
-    margin-left: 3%;
-    border: 5px solid white; /* Optionally add a white border around the image */
-  }
-  img {
-    width: 60%;
-    border-radius: 9px;
-    margin-left: 3%;
+    background-color: transparent;
   }
   .card {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.85); 
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
-    padding: 5px 5px;
+    padding: 20px;
     width: 95%;
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 95%;
+    overflow: hidden; 
+  }
+  .main-image {
+    width: 60%;
+    border-radius: 9px;
+    margin-left: 3%;
+    border: 5px solid white;
+  }
+  img {
+    width: 60%;
+    border-radius: 9px;
+    margin-left: 3%;
   }
   .header {
     width: 100%;
