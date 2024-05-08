@@ -167,7 +167,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('bg.jpg');
+    background-image: url('/photos/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
   }
