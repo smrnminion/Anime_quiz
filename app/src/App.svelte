@@ -174,7 +174,7 @@
     color: var(--plasma-colors-text);
   }
   .card {
-    background-color: var(--plasma-colors-buttonPrimary);
+    background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 20px;
@@ -189,7 +189,7 @@
     width: 60%;
     border-radius: 9px;
     margin-left: 3%;
-    border: 5px solid white;
+    border: 5px solid var(--plasma-colors-buttonPrimary);
   }
   img {
     width: 60%;
