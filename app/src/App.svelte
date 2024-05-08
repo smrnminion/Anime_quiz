@@ -189,7 +189,7 @@
     width: 60%;
     border-radius: 9px;
     margin-left: 3%;
-    border: 5px solid var(--plasma-colors-buttonPrimary);
+    border: 5px solid white;
   }
   img {
     width: 60%;
