@@ -139,7 +139,7 @@
       <h2>Жизни: {state.lifes}</h2>
     </div>
     <div class="content">
-      <img alt="img" src="/photos/{state.curr_anim.iso}.webp" />
+      <img alt="img" src="/photos/{state.curr_anim.iso}.webp" class="main-image" />
       <div class="buttons">
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled || used}
@@ -157,13 +157,24 @@
 </main>
 
 
+
 <style>
+    .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5; 
+  }
   main {
+    position: relative;
     width: 100%;
     height: 100%;
     font-family: "Oswald", sans-serif !important;
-    display: grid;
-    place-items: center;
     background-color: var(--plasma-colors-background);
     background-image: var(--plasma-colors-gradient);
     background-repeat: no-repeat;
