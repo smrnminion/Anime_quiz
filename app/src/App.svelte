@@ -171,9 +171,10 @@
     background-image: url('/photos/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    color: var(--plasma-colors-text);
   }
   .card {
-    background-color: rgba(255, 255, 255, 0.85); 
+    background-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 0 30px 1px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     padding: 20px;
