@@ -132,6 +132,7 @@
 </script>
 
 <main>
+  <div class="background"></div> 
   {#if !isHidden}
   <div class="card">
     <div class="header">
@@ -144,7 +145,7 @@
         {#each state.variants as {name, used}, i}
           <button id='button-{i}' disabled={isDisabled || used}
           class:used={used} class:focused={i === focusedIndex}
-          on:click={() => handleClick(i)}
+          on:click={()={() => handleClick(i)}
           >{name}</button>
         {/each}
         <button id="invisible-button" on:click={handleInvisibleClick} style="display: none;">Invisible</button>
@@ -175,10 +176,15 @@
     width: 100%;
     height: 100%;
     font-family: "Oswald", sans-serif !important;
-    background-color: var(--plasma-colors-background);
-    background-image: var(--plasma-colors-gradient);
-    background-repeat: no-repeat;
-    color: var(--plasma-colors-text);
+    display: grid;
+    place-items: center;
+    background-color: transparent; 
+  }
+  .main-image {
+    width: 60%;
+    border-radius: 9px;
+    margin-left: 3%;
+    border: 5px solid white;
   }
   img {
     width: 60%;
