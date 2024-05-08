@@ -131,6 +131,7 @@
 
 </script>
 
+
 <main>
   <div class="background"></div> 
   {#if !isHidden}
@@ -166,10 +167,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/photos/bg.jpg');
+    background-image: url('bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    opacity: 0.5; 
   }
   main {
     position: relative;
@@ -178,13 +178,13 @@
     font-family: "Oswald", sans-serif !important;
     display: grid;
     place-items: center;
-    background-color: transparent; 
+    background-color: transparent; /* This will keep the main area clear so the background shows through */
   }
   .main-image {
     width: 60%;
     border-radius: 9px;
     margin-left: 3%;
-    border: 5px solid white;
+    border: 5px solid white; /* Optionally add a white border around the image */
   }
   img {
     width: 60%;
